@@ -68,6 +68,7 @@ export class HeaderComponent {
   // }
 
   displayCart() {
+    console.log("Cart to be displayed")
     this.getCart();
     //this.displayCartPopup = true;
     this.route.navigateByUrl('/cart');
@@ -128,6 +129,10 @@ export class HeaderComponent {
   // }
 
   getCart() {
+    if(this.cart.length !==0) {
+      console.log(" Cart not empty")
+      return;
+    } 
     const params = { email: this.currUser.email };
     this.userService
       .getCart('http://localhost:3000/getCart', params)

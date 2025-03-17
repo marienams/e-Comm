@@ -55,7 +55,9 @@ export class CartComponent {
   //   }
   // }
   
-  
+  onProductRemove(){
+    console.log("Product remove clicked")
+  }
 
 
 }

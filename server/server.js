@@ -361,6 +361,16 @@ app.post("/addToCart", authenticateToken, (req, res) => {
   // This will get a product to add to user cart
 });
 
+app.post("/deleteCartProduct", authenticateToken, (req,res)=>{
+  const{user, product} = req.body
+
+  fs.readFile("user.json", "utf-8", (err, data)=>{
+    if(err) return res.status(500).json({err:"Internal server file error"})
+
+    
+  })
+})
+
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });

@@ -52,12 +52,17 @@ export class CartServiceService {
 
   // update value of user
   updateUser(newUser: User){
+    console.log("Login user shared")
+    // clear cart
+    this.cart.next([])
+    console.log(this.cart, " current cart")
+    // when new user logs in
     this.user.next(newUser)
   }
 
   clearCart(){
     console.log("Logout cart called")
-    this.cart.next([])
+    // this.cart.next([])
   }
 
   

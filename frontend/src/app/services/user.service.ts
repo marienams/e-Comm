@@ -19,7 +19,7 @@ export class UserService {
   userData$ = this.userData.asObservable();
 
   loginState(user: User) {
-    
+    console.log("Logged In state updated, token updated")
     this.isAuthenticated.next(true);  // Update state
     this.userData.next(user);         // Store user data
     localStorage.setItem('user', JSON.stringify(user)); // Optional for persistence

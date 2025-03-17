@@ -36,21 +36,23 @@ export class LoginComponent {
   }
   // When user is created
   @Output() signup = new EventEmitter<User>();
-  onConfirm(){
+  onSignUp(){
     this.signup.emit(this.user)
+    this.addUser(this.user)
     // do we need to emit?
   }
 
   onCancel() {
-    // this.display = false
-    // this.displayChange.emit(this.display);
+    // When user clicks cancel on login page
     this.route.navigateByUrl('')
+    
   }
 
   //@Output() login = new EventEmitter<User>();
   onLogin(){
-    //this.login.emit(this.user)
-    this.cartService.clearCart()
+    console.log("Logn Click action")
+    //clear cart array for new user
+    //this.cartService.clearCart()
     // cart service has the user, to be used for get and add cart
     this.cartService.updateUser(this.user)
     // after login, navigate back home
@@ -60,6 +62,7 @@ export class LoginComponent {
   }
   //API calls
   loginUser(user: User) {
+    console.log("Login API called")
     // here you contact request the API
     this.userService.login('http://localhost:3000/login', user).subscribe({
       next: (res: any) => {
@@ -81,6 +84,20 @@ export class LoginComponent {
         }
       },
     });
+  }
+
+  // API calls
+  addUser(user: User) {
+    this.userService
+      .addUser('http://localhost:3000/user-register', user)
+      .subscribe({
+        next: (data) => {
+          console.log('User Created');
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
   }
 
 }
