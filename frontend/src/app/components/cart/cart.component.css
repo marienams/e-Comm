@@ -1,0 +1,73 @@
+/* Main container */
+div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f5f5; /* Light background for contrast */
+    
+}
+
+/* Dialog Box */
+.popup {
+    width: 500px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+/* Product Cards */
+.products {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    background-color: #ffffff;
+    width: 100%;
+    gap: 15px;
+}
+
+.products img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+}
+
+/* Text Styling */
+.products p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.products p:first-child {
+    font-weight: bold;
+    color: #1d1d1d;
+}
+
+/* Button Styles */
+button {
+    background-color: #0078FF;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #005ecb;
+}
+
+button:active {
+    background-color: #0047a3;
+}

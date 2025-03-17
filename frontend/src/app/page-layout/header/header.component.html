@@ -1,0 +1,48 @@
+<header class="wrapper row full-center">
+    <img src="assets/images/logo.png" alt="Logo Image" class="logo">
+    <!-- Login/Signup -->
+    <div class="row">
+        <button
+            *ngIf="!isAuthenticated"
+            type="button"
+            (click) = "loginPage()"
+            label="Signup"
+        >Signup / Login</button>
+    </div>
+    
+    <!-- Login Popup-->
+    <!-- <app-login 
+        [(display)] = "displayLoginPopup"
+        (signup)="OnConfirmAddUser($event)"
+        (login)="OnConfirmLogin($event)"
+        header = "Login"
+    >
+    </app-login> -->
+
+    <!-- User Information and Cart -->
+     <div *ngIf="isAuthenticated">
+        
+        <button
+            (click)="displayCart()">
+             Cart
+         </button>
+         <button
+         (click)="logout()">
+            Logout
+         </button>
+     </div>
+
+     <!-- <app-cart
+     [(display)] = "displayCartPopup"
+     [allCartProducts] ="cart"
+     >
+     
+     </app-cart> -->
+     <!-- <app-cart
+     [(display)] = "displayCartPopup"
+     
+     >
+     
+     </app-cart> -->
+     
+</header>

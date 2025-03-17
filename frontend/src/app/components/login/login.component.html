@@ -1,0 +1,52 @@
+<div class="login-page">
+    <h2>Login</h2>
+
+    <div class="form-container">
+        <div class="form-field">
+            <label class="price-label">Name:</label>
+            <input type="text" />
+        </div>
+
+        <div class="form-field">
+            <label class="price-label">Email:</label>
+            <input type="text" [(ngModel)]="user.email" />
+        </div>
+
+        <div class="form-field">
+            <label class="price-label">Password:</label>
+            <input type="password" [(ngModel)]="user.password" />
+        </div>
+
+        <div class="button-group">
+            <button
+                type="button"
+                pButton
+                icon="pi pi-check"
+                (click)="onConfirm()"
+                label="Confirm"
+            >
+                Sign Up
+            </button>
+
+            <button
+                type="button"
+                pButton
+                icon="pi pi-times"
+                (click)="onCancel()"
+                label="Cancel"
+            >
+                Cancel
+            </button>
+
+            <button
+                type="button"
+                pButton
+                icon="pi pi-sign-in"
+                (click)="onLogin()"
+                label="Login"
+            >
+                Login
+            </button>
+        </div>
+    </div>
+</div>

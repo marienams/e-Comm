@@ -1,0 +1,86 @@
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DialogModule } from 'primeng/dialog';
+import { User } from '../../../types';
+import { FormsModule } from '@angular/forms';
+import { CartServiceService } from '../../services/cart-service.service';
+import { routes } from '../../app.routes';
+import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
+
+@Component({
+  selector: 'app-login',
+  imports: [DialogModule, CommonModule, FormsModule],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
+})
+export class LoginComponent {
+
+  constructor(private cartService: CartServiceService, private route: Router, private userService: UserService){}
+
+  @Input() display: boolean = false;
+  @Output() displayChange = new EventEmitter<boolean>();
+
+  @Input() user: User= {
+    name:"",
+    email: "",
+    password: "",
+    cart:[]
+  }
+  isAuthenticated: boolean = false;
+
+  ngOnInit(){
+    this.userService.isAuthenticated$.subscribe(status => {
+      this.isAuthenticated = status;
+    });
+  }
+  // When user is created
+  @Output() signup = new EventEmitter<User>();
+  onConfirm(){
+    this.signup.emit(this.user)
+    // do we need to emit?
+  }
+
+  onCancel() {
+    // this.display = false
+    // this.displayChange.emit(this.display);
+    this.route.navigateByUrl('')
+  }
+
+  //@Output() login = new EventEmitter<User>();
+  onLogin(){
+    //this.login.emit(this.user)
+    this.cartService.clearCart()
+    // cart service has the user, to be used for get and add cart
+    this.cartService.updateUser(this.user)
+    // after login, navigate back home
+    this.route.navigateByUrl('')
+    this.userService.loginState(this.user)
+    this.loginUser(this.user)
+  }
+  //API calls
+  loginUser(user: User) {
+    // here you contact request the API
+    this.userService.login('http://localhost:3000/login', user).subscribe({
+      next: (res: any) => {
+        //);
+        if (res.token) {
+          localStorage.setItem('token', res.token);
+          this.route.navigateByUrl('');
+          this.userService.loginState(this.user)
+          //console.log(res.token)
+          
+        }
+      },
+      error: (err) => {
+        // Display error message if user not found or password is incorrect
+        if (err.status === 404 || err.status === 401) {
+          alert('Username or password is incorrect');
+        } else {
+          alert('An unexpected error occurred. Please try again.');
+        }
+      },
+    });
+  }
+
+}

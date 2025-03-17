@@ -1,0 +1,19 @@
+<div class="cart-page">
+  <h1>Your Cart</h1>
+  <div class="actions">
+    <button class="btn-primary" (click)="onHomeClick()">Go back to home</button>
+  </div>
+
+  <div class="products-container">
+    <div class="product-card" *ngFor="let product of allCartProducts">
+      <img [src]="product.image" alt="{{ product.name }}" class="product-image"/>
+      <div class="product-details">
+        <h3>{{ product.name }}</h3>
+        <p class="price">Price: ${{ product.price }}</p>
+        <p class="rating">Rating: ⭐ {{ product.rating }}</p>
+      </div>
+    </div>
+  </div>
+
+  
+</div>
