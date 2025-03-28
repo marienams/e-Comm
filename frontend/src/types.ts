@@ -32,6 +32,7 @@ export interface Products{
 
 export interface Product{
     // data on 1 product
+    id: number;
     price: string;
     name: string;
     image: string;

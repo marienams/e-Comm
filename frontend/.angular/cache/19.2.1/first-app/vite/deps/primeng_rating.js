@@ -4,17 +4,17 @@ import {
   BaseStyle,
   StarFillIcon,
   StarIcon
-} from "./chunk-ORBOA52B.js";
+} from "./chunk-IQN27ON5.js";
 import {
   NG_VALUE_ACCESSOR
-} from "./chunk-TAZXWKSF.js";
+} from "./chunk-ILTEWMXY.js";
 import {
   PrimeTemplate,
   SharedModule,
   focus,
   getFirstFocusableElement,
   uuid
-} from "./chunk-TQMXHUDW.js";
+} from "./chunk-J4CJ5JZZ.js";
 import {
   CommonModule,
   NgClass,
@@ -22,7 +22,7 @@ import {
   NgIf,
   NgStyle,
   NgTemplateOutlet
-} from "./chunk-QUFGTQRT.js";
+} from "./chunk-WXJALMVD.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -69,8 +69,9 @@ import {
   ɵɵrestoreView,
   ɵɵtemplate,
   ɵɵtemplateRefExtractor
-} from "./chunk-QX2COTFA.js";
-import "./chunk-S35MAB2V.js";
+} from "./chunk-U62FLTWO.js";
+import "./chunk-P6U2JBMQ.js";
+import "./chunk-WDMUDEB6.js";
 
 // node_modules/primeng/fesm2022/primeng-rating.mjs
 var _c0 = ["onicon"];

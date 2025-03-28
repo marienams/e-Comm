@@ -42,5 +42,6 @@ export class HomeComponent {
 
   ngOnInit() {
     this.fetchProducts(0,this.rows);
+    // check if token exists and if it is valid
   }
 }

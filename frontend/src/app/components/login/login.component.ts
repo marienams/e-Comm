@@ -57,21 +57,26 @@ export class LoginComponent {
     this.cartService.updateUser(this.user)
     // after login, navigate back home
     this.route.navigateByUrl('')
-    this.userService.loginState(this.user)
+    
     this.loginUser(this.user)
   }
   //API calls
   loginUser(user: User) {
-    console.log("Login API called")
+    //console.log("Login API called")
     // here you contact request the API
     this.userService.login('http://localhost:3000/login', user).subscribe({
       next: (res: any) => {
         //);
         if (res.token) {
+          // setting values in local storage for data persistence
           localStorage.setItem('token', res.token);
+          localStorage.setItem('user', res.user.email);
+          localStorage.setItem('userInfo',JSON.stringify(res.user) );
+          //localStorage.setItem('cart',JSON.stringify(res.user.cart));
+          //navigate to home after logging in
           this.route.navigateByUrl('');
+          // setting states (might not be that useful later)
           this.userService.loginState(this.user)
-          //console.log(res.token)
           
         }
       },
@@ -93,6 +98,7 @@ export class LoginComponent {
       .subscribe({
         next: (data) => {
           console.log('User Created');
+          alert('Signed Up! Login Now');
         },
         error: (error) => {
           console.log(error);

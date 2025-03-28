@@ -1,7 +1,15 @@
 import {
   Ripple,
   zindexutils
-} from "./chunk-UJZIEOFG.js";
+} from "./chunk-LRBJGS2K.js";
+import {
+  animate,
+  animation,
+  style,
+  transition,
+  trigger,
+  useAnimation
+} from "./chunk-F6AWCISF.js";
 import {
   AutoFocus,
   BaseComponent,
@@ -11,7 +19,7 @@ import {
   TimesIcon,
   WindowMaximizeIcon,
   WindowMinimizeIcon
-} from "./chunk-ORBOA52B.js";
+} from "./chunk-IQN27ON5.js";
 import {
   PrimeTemplate,
   SharedModule,
@@ -34,15 +42,7 @@ import {
   setAttribute,
   unblockBodyScroll,
   uuid
-} from "./chunk-TQMXHUDW.js";
-import {
-  animate,
-  animation,
-  style,
-  transition,
-  trigger,
-  useAnimation
-} from "./chunk-7ERKVXZ5.js";
+} from "./chunk-J4CJ5JZZ.js";
 import {
   CommonModule,
   DOCUMENT,
@@ -51,7 +51,7 @@ import {
   NgStyle,
   NgTemplateOutlet,
   isPlatformBrowser
-} from "./chunk-QUFGTQRT.js";
+} from "./chunk-WXJALMVD.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -118,10 +118,11 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate,
   ɵɵviewQuery
-} from "./chunk-QX2COTFA.js";
+} from "./chunk-U62FLTWO.js";
+import "./chunk-P6U2JBMQ.js";
 import {
   __spreadValues
-} from "./chunk-S35MAB2V.js";
+} from "./chunk-WDMUDEB6.js";
 
 // node_modules/primeng/fesm2022/primeng-badge.mjs
 var theme = ({

@@ -14,7 +14,7 @@ const SECRET_KEY = process.env.JWT_SECRET;
 const corsOptions = {
   origin: "http://localhost:4200",
   optionsSuccessStatus: 204,
-  methods: "GET, POST, PUT, DELETE",
+  methods: "GET, POST, PUT, DELETE, PATCH",
 };
 
 // Use cors middleware
@@ -210,6 +210,7 @@ app.post("/user-register", (req, res) => {
       name,
       email,
       password,
+      cart: [],
     };
 
     jsonData.users.push(newItem);
@@ -253,7 +254,8 @@ app.post("/login", (req, res) => {
     // Generate a JWT token
     const token = jwt.sign({ email }, SECRET_KEY, { expiresIn: "1h" });
 
-    res.status(200).json({ token });
+    res.status(200).json({ token , user});
+    
   });
 });
 
@@ -361,13 +363,32 @@ app.post("/addToCart", authenticateToken, (req, res) => {
   // This will get a product to add to user cart
 });
 
-app.post("/deleteCartProduct", authenticateToken, (req,res)=>{
-  const{user, product} = req.body
+app.patch("/deleteCartProduct", authenticateToken, (req,res)=>{
+  
+  const{email, product_id} = req.body
 
-  fs.readFile("user.json", "utf-8", (err, data)=>{
+  fs.readFile("user.json", "utf-8", async (err, data)=>{
     if(err) return res.status(500).json({err:"Internal server file error"})
 
+    const userData = JSON.parse(data)
+
+    const users = userData.users
+    const currUser = users.find((u) => u.email === email ) 
     
+    if(!currUser){
+      return res.status(500).JSON({error: "Internal server error: user not found"})
+    }
+    // const productToRemove = currUser.cart.find((p) => p === product_id)
+    currUser.cart = currUser.cart.filter(p => p!=product_id)
+    await fs.writeFile("user.json", JSON.stringify(userData, null, 2), (err) =>{
+      if(err){
+        return res.status(500).JSON({err: "Internal server error"})
+      }
+      res.status(200).json({"Element removed ": currUser.cart})
+    })
+
+    
+
   })
 })
 

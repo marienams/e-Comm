@@ -8,9 +8,10 @@ import { UserService } from './user.service';
 })
 export class CartServiceService {
 // FOR SENDING PRODUCTS ADDED TO CART, TO CART COMPONENT
-  constructor(userService: UserService) { }
+  //constructor(userService: UserService) { }
   // NEW PRODUCT
   newProduct: Product = {
+    id : 0,
     price: "",
     name: "",
     image: "",
@@ -52,10 +53,10 @@ export class CartServiceService {
 
   // update value of user
   updateUser(newUser: User){
-    console.log("Login user shared")
+    //console.log("Login user shared")
     // clear cart
     this.cart.next([])
-    console.log(this.cart, " current cart")
+    //console.log(this.cart, " current cart")
     // when new user logs in
     this.user.next(newUser)
   }

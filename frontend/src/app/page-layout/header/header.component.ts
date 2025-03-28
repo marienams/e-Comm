@@ -25,6 +25,7 @@ export class HeaderComponent {
 
   @Input() user!: User;
   @Input() cartProduct: Product = {
+    id: 0,
     price: '',
     name: '',
     image: '',
@@ -68,7 +69,7 @@ export class HeaderComponent {
   // }
 
   displayCart() {
-    console.log("Cart to be displayed")
+    //console.log("Cart to be displayed")
     this.getCart();
     //this.displayCartPopup = true;
     this.route.navigateByUrl('/cart');
@@ -80,10 +81,13 @@ export class HeaderComponent {
     this.userService.logoutState();
     this.cartService.clearCart()
     this.cart = []
+    localStorage.removeItem('cartProducts');
     
   }
 
   ngOnInit() {
+    this.userService.checkUserSession();
+    //getting is authenticated status from user service
     this.userService.isAuthenticated$.subscribe((status) => {
       this.isAuthenticated = status;
     });
@@ -103,44 +107,22 @@ export class HeaderComponent {
       });
   }
 
-  // loginUser(user: User) {
-  //   // here you contact request the API
-  //   this.userService.login('http://localhost:3000/login', user).subscribe({
-  //     next: (res: any) => {
-  //       //);
-  //       if (res.token) {
-  //         localStorage.setItem('token', res.token);
-  //         this.route.navigateByUrl('');
-  //         this.userService.loginState(this.user)
-  //         console.log("Logged in")
-  //         this.isLoggedIn = true;
-  //         this.currUser = user;
-  //       }
-  //     },
-  //     error: (err) => {
-  //       // Display error message if user not found or password is incorrect
-  //       if (err.status === 404 || err.status === 401) {
-  //         alert('Username or password is incorrect');
-  //       } else {
-  //         alert('An unexpected error occurred. Please try again.');
-  //       }
-  //     },
-  //   });
-  // }
-
   getCart() {
-    if(this.cart.length !==0) {
-      console.log(" Cart not empty")
-      return;
-    } 
+    // if(this.cart.length !==0) {
+    //   console.log(" Cart not empty")
+    //   return;
+    // } 
     const params = { email: this.currUser.email };
     this.userService
       .getCart('http://localhost:3000/getCart', params)
       .subscribe({
         next: (response) => {
-          this.cart.push(response.cart);
-          //console.log(this.cart);
+          //this.cart.push(response.cart);
+          this.cart = response.cart;
+          console.log(response.cart)
           this.cartService.updateUserCart(this.cart)
+          //setting cart to loacl sotrage on getCart()
+          localStorage.setItem('cart', JSON.stringify(response.cart))
         },
 
         error: (err) => console.error('Error fetching cart: ', err),

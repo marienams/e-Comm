@@ -41,7 +41,12 @@ export class ProductComponent {
   }
   // API call to send product to user cart
   sendToCart(){
-    const params = {productName: this.product.name, user: this.currentUser}
+    const userInfo = localStorage.getItem('userInfo');
+    if(!userInfo){
+      return console.log("Log in");
+    }
+    const parsedUserInfo = JSON.parse(userInfo)
+    const params = {productName: this.product.name, user: parsedUserInfo}
     this.userService.addToCart("http://localhost:3000/addToCart", params).subscribe({
       next: (response) => console.log("Added to cart as well as db"),
       error: (err) => console.error('Error fetching cart: ',err)

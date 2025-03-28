@@ -1,7 +1,8 @@
 <div class="cart-page">
-  <h1>Your Cart</h1>
+  <h1> Cart</h1>
+  <h2>{{userEmail}}</h2>
   <div class="actions">
-    <button class="btn-primary" (click)="onHomeClick()">Go back to home</button>
+    <button class="btn-primary" (click)="onHomeClick()">Go back to shopping</button>
   </div>
 
   <div class="products-container">
@@ -12,7 +13,7 @@
         <p class="price">Price: ${{ product.price }}</p>
         <p class="rating">Rating: ⭐ {{ product.rating }}</p>
       </div>
-      <button class="delete-product" (click)="onProductRemove()">Delete</button>
+      <button class="delete-product" (click)="onProductRemove(product)">Delete</button>
     </div>
   </div>
 

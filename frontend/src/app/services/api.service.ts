@@ -24,4 +24,8 @@ export class ApiService {
   post<T>(url: string, body: User, options: Options): Observable<T> {
     return this.httpClient.post<T>(url, body, options) as Observable<T>;
   }
+
+  patch<T>(url: string, body: User, options: Options): Observable<T> {
+    return this.httpClient.patch<T>(url, body, options) as Observable<T>;
+  }
 }
