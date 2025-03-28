@@ -72,6 +72,7 @@ export class LoginComponent {
           localStorage.setItem('token', res.token);
           localStorage.setItem('user', res.user.email);
           localStorage.setItem('userInfo',JSON.stringify(res.user) );
+          localStorage.setItem('cart', JSON.stringify(user.cart));
           //localStorage.setItem('cart',JSON.stringify(res.user.cart));
           //navigate to home after logging in
           this.route.navigateByUrl('');

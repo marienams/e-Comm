@@ -121,7 +121,14 @@ export class CartComponent {
         //console.log(res)
         // Remove the product from the local array
       this.allCartProducts = this.allCartProducts.filter(item => item.id !== product.id);
-      
+      // Step 1: Retrieve cart from localStorage
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+      // Step 2: Filter out the deleted product
+      const updatedCart = cart.filter((item: Product) => item.id !== product.id);
+
+      // Step 3: Save the updated cart back to localStorage
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
       // Update the cart service if needed
       //this.cartService.updateUserCart(this.allCartProducts);
         

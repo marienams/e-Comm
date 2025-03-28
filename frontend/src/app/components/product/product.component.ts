@@ -48,7 +48,25 @@ export class ProductComponent {
     const parsedUserInfo = JSON.parse(userInfo)
     const params = {productName: this.product.name, user: parsedUserInfo}
     this.userService.addToCart("http://localhost:3000/addToCart", params).subscribe({
-      next: (response) => console.log("Added to cart as well as db"),
+      next: (response) => {
+        // Step 1: Retrieve the existing cart from localStorage
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+    // Step 2: Check if the product already exists in the cart
+    const productExists = cart.some((item: Product) => item.id === this.product.id);
+
+    if (!productExists) {
+        // Step 3: Add the new product to the cart array
+        cart.push(this.product);
+
+        // Step 4: Save the updated cart back to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        console.log('Product added successfully!');
+    } else {
+        console.log('Product already exists in the cart.');
+    }
+      },
       error: (err) => console.error('Error fetching cart: ',err)
     })
   }

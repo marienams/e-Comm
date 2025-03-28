@@ -81,6 +81,22 @@
         3,
         4
       ]
+    },
+    {
+      "user_id": 9,
+      "name": "",
+      "email": "merlow@email.com",
+      "password": "1234",
+      "cart": [
+        15,
+        6,
+        8,
+        2,
+        9,
+        2,
+        2,
+        3
+      ]
     }
   ]
 }
